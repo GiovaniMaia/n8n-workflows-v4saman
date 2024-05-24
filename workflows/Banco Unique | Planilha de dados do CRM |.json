@@ -1,0 +1,600 @@
+{
+  "active": true,
+  "connections": {
+    "etapa lead": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "leads": {
+      "main": [
+        [
+          {
+            "node": "contatos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "contatos": {
+      "main": [
+        [
+          {
+            "node": "seta contatos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "seta contatos": {
+      "main": [
+        [
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "data criação",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "usuário responsável": {
+      "main": [
+        [
+          {
+            "node": "etapa lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "data criação": {
+      "main": [
+        [
+          {
+            "node": "usuário responsável",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-27T19:42:33.580Z",
+  "id": "vulI7en5ktGrSgWk",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Banco Unique | Planilha de dados do CRM |",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/leads/pipelines/{{ $('leads').item.json.pipeline_id }}/statuses/{{ $('leads').item.json.status_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "with",
+              "value": "contacts"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "318d4908-2d68-4a7a-bb84-a6c3eb8df72a",
+      "name": "etapa lead",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        800,
+        140
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "movimentoleadsbancounique",
+        "options": {}
+      },
+      "id": "04a3c542-2fb5-4614-aecb-537629997b03",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        140
+      ],
+      "webhookId": "a468a9bb-09e9-4fad-8b43-99eb2b890b53"
+    },
+    {
+      "parameters": {
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/leads/{{ $json.body[\"leads[status][0][id]\"] }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "with",
+              "value": "contacts"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "a7b809b3-9f10-47e5-a453-afd38d63d956",
+      "name": "leads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -100,
+        140
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/contacts/{{ $('leads').item.json._embedded.contacts[0].id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "5581aae4-9d06-441c-b59c-589468a952ec",
+      "name": "contatos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        60,
+        140
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const customFields = $json[\"custom_fields_values\"] || [];\nconst desiredFieldIds = [856882, 856884, 859452, 1194864, 1194866, 1403892, 859398, 1403896, 856880, 859454, 859456, 859506, 860828, 1074028, 1074030, 1074032, 1074034, 1074084, 1194966, 1195066\n/* adicione os outros IDs aqui */];\n\nconst fieldValues = {};\n\nfor (const desiredFieldId of desiredFieldIds) {\n    const foundField = customFields.find(field => field.field_id === desiredFieldId);\n    if (foundField) {\n        fieldValues[desiredFieldId] = {\n            field_name: foundField.field_name,\n            value: foundField.values[0].value\n        };\n    }\n}\n\nreturn [{ fieldValues }];\n"
+      },
+      "id": "977825e0-b103-4a65-bb3a-aba7b4d07c1f",
+      "name": "seta contatos",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        140
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $('leads').item.json.updated_at }}",
+        "format": "custom",
+        "customFormat": "dd/MM/yyyy",
+        "options": {
+          "timezone": false
+        }
+      },
+      "id": "03f33df2-cbd8-4541-ba41-b1586f4b2f3a",
+      "name": "Date & Time",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        360,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/users/{{ $('leads').item.json.responsible_user_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "with",
+              "value": "contacts"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "bffc87a9-1f9e-45a7-be40-80544277ff9b",
+      "name": "usuário responsável",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        660,
+        140
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1s4zoUnGUMzrrAtWwtGLo_qUR5FmtUr7IN0lHcEFbKRc/edit#gid=469660717",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 838024354,
+          "mode": "list",
+          "cachedResultName": "Planilha Movimentação CRM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1s4zoUnGUMzrrAtWwtGLo_qUR5FmtUr7IN0lHcEFbKRc/edit#gid=838024354"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Pre": "={{ $('leads').item.json.id }}",
+            "Data de Criação": "={{ $('data criação').item.json.formattedDate }}",
+            "Data de Movimentação": "={{ $('Date & Time').item.json.formattedDate }}",
+            "Fase Atual": "={{ $json.name }}",
+            "Nome": "={{ $('leads').item.json.name }}",
+            "Email": "={{ $('seta contatos').item.json.fieldValues['856884'].value }}",
+            "Telefone": "={{ $('seta contatos').item.json.fieldValues['856882'].value }}",
+            "Conta PJ ou PF? ": "={{ $('contatos').item.json.custom_fields_values[2].values[0].value }}",
+            "Valor da Venda": "={{ $('leads').item.json.price }}",
+            "Nome da empresa": "={{ $('seta contatos').item.json.fieldValues['1195066'].value }}",
+            "Ramo": "={{ $('seta contatos').item.json.fieldValues['1194966'].value }}",
+            "Plataforma": "={{ $('seta contatos').item.json.fieldValues['1074034'].value }}",
+            "Campanha": "={{ $('seta contatos').item.json.fieldValues['1074028'].value }}",
+            "Conjunto de Anúncio": "={{ $('seta contatos').item.json.fieldValues['1074030'].value }}",
+            "Anúncio": "={{ $('seta contatos').item.json.fieldValues['1074032'].value }}",
+            "Plataforma ": "={{ $('seta contatos').item.json.fieldValues['1074034'].value }}",
+            "Campanha ": "={{ $('seta contatos').item.json.fieldValues['1074028'].value }}",
+            "Conjunto": "={{ $('seta contatos').item.json.fieldValues['1074030'].value }}",
+            "Anuncios ": "={{ $('seta contatos').item.json.fieldValues['1074032'].value }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Pre",
+              "displayName": "Pre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Data de Criação",
+              "displayName": "Data de Criação",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Data de Movimentação",
+              "displayName": "Data de Movimentação",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fase Atual",
+              "displayName": "Fase Atual",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Telefone",
+              "displayName": "Telefone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Conta PJ ou PF? ",
+              "displayName": "Conta PJ ou PF? ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ramo",
+              "displayName": "Ramo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nome da empresa",
+              "displayName": "Nome da empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Você corre algum risco de bloqueio em sua movimentação bancária? ",
+              "displayName": "Você corre algum risco de bloqueio em sua movimentação bancária? ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Valor da Venda",
+              "displayName": "Valor da Venda",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Plataforma",
+              "displayName": "Plataforma",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Campanha",
+              "displayName": "Campanha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Conjunto de Anúncio",
+              "displayName": "Conjunto de Anúncio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Anúncio",
+              "displayName": "Anúncio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Plataforma ",
+              "displayName": "Plataforma ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Campanha ",
+              "displayName": "Campanha ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Conjunto",
+              "displayName": "Conjunto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Anuncios ",
+              "displayName": "Anuncios ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "30d6a20c-e1e4-4eab-a005-69ed7258e0da",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        940,
+        140
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QTcF9qaFX03vTQ2g",
+          "name": "Google Sheets account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $('leads').item.json.created_at }}",
+        "format": "custom",
+        "customFormat": "dd/MM/yyyy",
+        "options": {}
+      },
+      "id": "3c8639b9-133c-4b0e-aa66-12e0e5470f19",
+      "name": "data criação",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        520,
+        140
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "connection": "upgrade",
+            "host": "n8.v4saman.com",
+            "x-forwarded-proto": "https",
+            "x-forwarded-ssl": "on",
+            "x-real-ip": "142.0.204.92",
+            "x-forwarded-for": "142.0.204.92",
+            "content-length": "317",
+            "user-agent": "amoCRM-Webhooks/3.0",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-amocrm-requestid": "e9df8379-a299-4dd8-acd9-b6da5186ca23",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "leads[status][0][id]": "10294204",
+            "leads[status][0][status_id]": "60367571",
+            "leads[status][0][pipeline_id]": "7115867",
+            "leads[status][0][old_status_id]": "59148111",
+            "leads[status][0][old_pipeline_id]": "7115867",
+            "account[id]": "31498667",
+            "account[subdomain]": "brunobancouniquecombr"
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-10-23T17:25:40.134Z",
+      "updatedAt": "2023-10-23T17:25:40.134Z",
+      "id": "na4Vpv4OM2OCp4cf",
+      "name": "Cliente"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-04-12T17:34:15.000Z",
+  "versionId": "c2d83ece-a273-4a39-8eae-1638b39f7fe4"
+}
