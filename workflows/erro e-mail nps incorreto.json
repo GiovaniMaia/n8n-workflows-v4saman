@@ -1,0 +1,237 @@
+{
+  "active": false,
+  "connections": {
+    "Send Email1": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "Send Email1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets6": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-09-29T22:49:54.218Z",
+  "id": "8ECSNnt37omkshhV",
+  "meta": null,
+  "name": "erro e-mail nps incorreto",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "476ab37f-c3c0-42c8-8c0a-7bb4f0e7b7e6",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        380,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1rDXFoykXg3y7kZjSrvVNg33HZPanf0sW59QjfVCv-wE/edit?resourcekey#gid=1546218761",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1546218761,
+          "mode": "list",
+          "cachedResultName": "Respostas ao formulário 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1rDXFoykXg3y7kZjSrvVNg33HZPanf0sW59QjfVCv-wE/edit#gid=1546218761"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "=Link da tarefa:",
+              "lookupValue": "={{ $json.execution.error.message }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1fb94fbe-a16f-4bdf-be21-4766e58690ea",
+      "name": "Google Sheets6",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        800,
+        260
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLLX7jfygiLZLT1v",
+          "name": "API SHEETS SLACK"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "Erro de E-mail Pesquisa de NPS <giovani.maia@v4company.com>",
+        "toEmail": "analitico.bh30@v4company.com",
+        "subject": "[n8n] - Usuário sem cadastro no Slack ",
+        "text": "=Olá Fabio Junio, passando para avisar que o e-mail {{ $('Google Sheets6').item.json['Email do Solicitante:'] }} está incorreto ou não se encontra no slack para o envio da pesquisa de NPS do time Tech.",
+        "options": {}
+      },
+      "id": "0c96a5bf-b1ce-4662-a4d4-33387edfaaea",
+      "name": "Send Email1",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        260
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "Hz14ASeSPZH0SsQ5",
+          "name": "SMTP account giovani.maia"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "c1911830-11fe-4192-a6dc-82ab95f54e29",
+      "name": "No Operation, do nothing3",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "execução",
+              "value": "={{ $json.execution }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "be5b8c86-bce8-40af-abfe-2342efe017dd",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        600,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "f16fd8bb-a9f0-4029-860e-390233ebe0bd",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1rDXFoykXg3y7kZjSrvVNg33HZPanf0sW59QjfVCv-wE/edit?resourcekey#gid=1546218761",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1546218761,
+          "mode": "list",
+          "cachedResultName": "Respostas ao formulário 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1rDXFoykXg3y7kZjSrvVNg33HZPanf0sW59QjfVCv-wE/edit#gid=1546218761"
+        },
+        "toDelete": "=rows",
+        "startIndex": "={{ $json.row_number }}"
+      },
+      "id": "69fe719c-40b2-40c9-ab16-7019c7a3fc8c",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        960,
+        260
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLLX7jfygiLZLT1v",
+          "name": "API SHEETS SLACK"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-11-23T21:58:00.000Z",
+  "versionId": "c72a3893-404f-4ecd-a9a0-d624765f0bad"
+}
