@@ -1,0 +1,663 @@
+{
+  "active": true,
+  "connections": {
+    "webhookvendas": {
+      "main": [
+        [
+          {
+            "node": "condicao_para_nao_duplicar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "verificar_se_venda": {
+      "main": [
+        [
+          {
+            "node": "pipefy_venda",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "verificando_status_venda",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "verificar_se_ciclo1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "verificar_se_ciclo1": {
+      "main": [
+        [
+          {
+            "node": "pipefy_assinatura_ciclo_1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "verificando_status_assinatura",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "verificar_se_laststatus_ativo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "condicao_para_nao_duplicar": {
+      "main": [
+        [
+          {
+            "node": "verifica_se_reembolsada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "verificando_status_venda": {
+      "main": [
+        [
+          {
+            "node": "pipefy_venda_com_status_nao_aprovado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "verificando_status_assinatura": {
+      "main": [
+        [
+          {
+            "node": "pipefy_assinatura_ciclo_1_statuso_nao_aprovado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "verifica_se_cancelada": {
+      "main": [
+        [
+          {
+            "node": "pipefy_venda_cancelada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "verificar_se_laststatus_ativo": {
+      "main": [
+        [
+          {
+            "node": "verifica_se_status_nao_cancelado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "verifica_status_aprovado_ou_nao",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "verifica_se_status_nao_cancelado": {
+      "main": [
+        [
+          {
+            "node": "pipefy_venda_inadinplencia",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "verifica_se_cancelada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "verifica_se_reembolsada": {
+      "main": [
+        [
+          {
+            "node": "pipefy_venda_reembolsada",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "verifica_se_reclamada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "verifica_se_reclamada": {
+      "main": [
+        [
+          {
+            "node": "pipefy_venda_reclamada",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "verificar_se_venda",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "verifica_status_aprovado_ou_nao": {
+      "main": [
+        [
+          {
+            "node": "pipefy_venda_inadinplencia1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-29T22:44:53.151Z",
+  "id": "0OmLAfPX9yEgWjkV",
+  "meta": null,
+  "name": "RECEBENDO ASSINATURAS DO GURU",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "vendas",
+        "options": {}
+      },
+      "id": "d2a7183c-eb8b-4235-8353-b117ed57e085",
+      "name": "webhookvendas",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        180
+      ],
+      "webhookId": "1af9680a-0531-46d4-b67a-ed3abac4cc79"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.body.invoice.length}}",
+              "operation": "equal"
+            }
+          ]
+        }
+      },
+      "id": "f4723a99-95c0-4e63-b0ee-1cc5f50e73c6",
+      "name": "verificar_se_venda",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.body.invoice.cycle }}",
+              "operation": "equal",
+              "value2": 1
+            }
+          ]
+        }
+      },
+      "id": "06a40c1e-8e3b-4a66-a66b-f6ac911e2015",
+      "name": "verificar_se_ciclo1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        20,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.affiliations }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "f8e88700-b7d7-4a96-a029-4eb710334d03",
+      "name": "condicao_para_nao_duplicar",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -940,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('webhookvendas').item.json.body.status }}",
+              "operation": "notEqual",
+              "value2": "approved"
+            }
+          ]
+        }
+      },
+      "id": "35fc5a06-d3ef-425e-ada0-e9e74c16dfe6",
+      "name": "verificando_status_venda",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        20,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.status }}",
+              "operation": "notEqual",
+              "value2": "approved"
+            }
+          ]
+        }
+      },
+      "id": "52a1015f-0cf5-4469-b135-7844ba776669",
+      "name": "verificando_status_assinatura",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        280,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.status }}",
+              "value2": "canceled"
+            }
+          ]
+        }
+      },
+      "id": "5ce70c84-fcd9-49ef-95e2-86df96e2fdcc",
+      "name": "verifica_se_cancelada",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        900,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.subscription.last_status }}",
+              "operation": "notEqual",
+              "value2": "=active"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "680f8012-b52e-43b8-b3e1-0e85b07184e6",
+      "name": "verificar_se_laststatus_ativo",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        280,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.status }}",
+              "operation": "notContains",
+              "value2": "canceled"
+            }
+          ]
+        }
+      },
+      "id": "5be0e813-2f15-46e6-a6e1-7c664ad035ae",
+      "name": "verifica_se_status_nao_cancelado",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        620,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "endpoint": "https://api.pipefy.com/graphql",
+        "requestFormat": "json",
+        "query": "=mutation {\n  createCard(input: {\n    pipe_id: 302256530,\n    title: \"✔️ Nova Venda ativada no GURU: {{ $json.body.contact.company_name }}\",\n    fields_attributes:[\n      {field_id: \"t_tulo_da_tarefa\", field_value: \"✔️ Nova Venda ativada no GURU: {{ $json.body.contact.company_name }}\"},\n      {field_id: \"descri_o\", field_value: \"Empresa: {{ $json.body.contact.company_name }}\nCriada em: {{ $json.body.dates.created_at }}\nAprovada em: {{ $json.body.dates.confirmed_at }}\nCPF/CNPJ: {{ $json.body.contact.doc }}\nNome do Cliente: {{ $json.body.contact.name }}\nEmail do Cliente: {{ $json.body.contact.email }}\nTelefone Cliente: +{{ $json.body.contact.phone_local_code }} {{ $json.body.contact.phone_number }}\nCidade/Estado Cliente: {{ $json.body.contact.address_city }}/{{ $json.body.contact.address_state }}\nRoyalties: R${{ $json.body.payment.affiliate_value }}\nValor Unidade: R${{ $json.body.payment.net }}\nValor do produto: R${{ $json.body.product.unit_value }}\nParcelas: {{ $json.body.payment.installments.qty }} x R$:{{ $json.body.payment.installments.value }}\nMarketplace: {{ $json.body.payment.marketplace_name }}\nNome do produto: {{ $json.body.product.name }}\nOferta: {{ $json.body.product.offer.name }}\nPercentual V4/Franqueado:\nForma de pagamento: {{ $json.body.payment.method }}\nStatus: {{ $json.body.status }}\nCódigo venda GURU: {{ $json.body.payment.acquirer.tid }}\nCódigo: {{ $json.body.product.id }}\"}\n    ]}\n  ) {\n    card {\n      title\n    }\n  }\n}                                                 ",
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJQaXBlZnkiLCJpYXQiOjE2OTE2MTQ2MjUsImp0aSI6IjllZWFjMDcxLWY3YmUtNDdjOC1iODU5LTE3N2Y0NjcxMzZmMiIsInN1YiI6MzAyMjE1NDA1LCJ1c2VyIjp7ImlkIjozMDIyMTU0MDUsImVtYWlsIjoiZmFiaW8uanVuaW9yQHY0Y29tcGFueS5jb20iLCJhcHBsaWNhdGlvbiI6MzAwMjY2MzAwLCJzY29wZXMiOltdfSwiaW50ZXJmYWNlX3V1aWQiOm51bGx9.xrPjSHLFp4zGwKBF5BB3dwsFgrsRTqzgwllIkhoN6HgqlaFS-VRiPPs_Rzq36sCf3o5FGpFV2gtXziLsNn5whw"
+            }
+          ]
+        }
+      },
+      "id": "b2aab98d-9fcd-4d57-8c34-99a0e69257bd",
+      "name": "pipefy_venda",
+      "type": "n8n-nodes-base.graphql",
+      "typeVersion": 1,
+      "position": [
+        20,
+        -220
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "endpoint": "https://api.pipefy.com/graphql",
+        "requestFormat": "json",
+        "query": "=mutation {\n  createCard(input: {\n    pipe_id: 302245050,\n    title: \"{{ $json.body.contact.name }}\",\n    fields_attributes:[\n      {field_id: \"nome_do_cliente\", field_value: \"{{ $json.body.contact.name }}\"},\n      {field_id: \"raz_o_social\", field_value: \"\"},\n      {field_id: \"contato\", field_value: \"+{{ $json.body.contact.phone_local_code }} {{ $json.body.contact.phone_number }}\"},\n      {field_id: \"e_mail\", field_value: \"{{ $json.body.contact.email }}\"},\n      {field_id: \"servi_o\", field_value: \"{{ $json.body.product.name }}\"},\n      {field_id: \"fee\", field_value: \"{{ $json.body.payment.net }}\"},\n      {field_id: \"valor_total_do_servi_o\", field_value: \"{{ $json.body.payment.installments.value }}\"},\n      {field_id: \"c_digo_guru\", field_value: \"{{ $json.body.payment.marketplace_id }}\"},\n      {field_id: \"c_digo_pagar_me\", field_value: \"{{ $json.body.product.id }}\"},\n      {field_id: \"observa_es_gerais\", field_value: \"Criada em: {{ $json.body.dates.created_at }}\nStatus em: {{ $json.body.dates.confirmed_at }}\nForma de pagamento: {{ $json.body.payment.method }}\nStatus: {{ $json.body.status }}\nProduto: {{ $json.body.product.name }}\nOferta: {{ $json.body.product.offer.name }}\nMarketplace: {{ $json.body.payment.acquirer.name }}\nValor afiliado: {{ $json.body.payment.affiliate_value }}\n\n\"}\n      ]}\n  ) {\n    card {\n      title\n    }\n  }\n}                                                 ",
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJQaXBlZnkiLCJpYXQiOjE2OTE2MTQ2MjUsImp0aSI6IjllZWFjMDcxLWY3YmUtNDdjOC1iODU5LTE3N2Y0NjcxMzZmMiIsInN1YiI6MzAyMjE1NDA1LCJ1c2VyIjp7ImlkIjozMDIyMTU0MDUsImVtYWlsIjoiZmFiaW8uanVuaW9yQHY0Y29tcGFueS5jb20iLCJhcHBsaWNhdGlvbiI6MzAwMjY2MzAwLCJzY29wZXMiOltdfSwiaW50ZXJmYWNlX3V1aWQiOm51bGx9.xrPjSHLFp4zGwKBF5BB3dwsFgrsRTqzgwllIkhoN6HgqlaFS-VRiPPs_Rzq36sCf3o5FGpFV2gtXziLsNn5whw"
+            }
+          ]
+        }
+      },
+      "id": "257b514c-eb8f-44df-a3b6-51c7c763cdea",
+      "name": "pipefy_venda_com_status_nao_aprovado",
+      "type": "n8n-nodes-base.graphql",
+      "typeVersion": 1,
+      "position": [
+        280,
+        -140
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "endpoint": "https://api.pipefy.com/graphql",
+        "requestFormat": "json",
+        "query": "=mutation {\n  createCard(input: {\n    pipe_id: 302256530,\n    title: \"🚀 Nova Assinatura ativada no GURU: {{ $json.body.contact.company_name }}\",\n    fields_attributes:[\n      {field_id: \"t_tulo_da_tarefa\", field_value: \"🚀 Nova Assinatura ativada no GURU: {{ $json.body.contact.company_name }}\"},\n      {field_id: \"descri_o\", field_value: \"Empresa: {{ $json.body.contact.company_name }}\nData Assinatura: {{ $json.body.invoice.created_at }}\nVencimento: {{ $json.body.invoice.charge_at }}\nCPF/CNPJ: {{ $json.body.contact.doc }}\nNome do Cliente: {{ $json.body.contact.name }}\nEmail do Cliente: {{ $json.body.contact.email }}\nTelefone Cliente: +{{ $json.body.contact.phone_local_code }} {{ $json.body.contact.phone_number }}\nCidade/Estado Cliente: {{ $json.body.contact.address_city }}/{{ $json.body.contact.address_state }}\nValor da Assinatura: R${{ $json.body.invoice.value }}\nParcela: {{ $json.body.payment.installments.qty }} x R${{ $json.body.payment.installments.value }}\nRoyalties: R${{ $json.body.payment.affiliate_value }}\nMarketplace valor: R${{ $json.body.payment.marketplace_value }}\nValor Unidade: R${{ $json.body.payment.net }}\nPercentual V4/Franqueado: \nForma de pagamento: {{ $json.body.payment.method }}\nMarketplace: {{ $json.body.payment.acquirer.name }}\nCódigo venda GURU: {{ $json.body.payment.acquirer.tid }}\nCódigo Produto: {{ $json.body.product.marketplace_id }}\nCódigo assinatura: {{ $json.body.subscription.id }}\nCódigo Fatura: {{ $json.body.invoice.id }}\nProduto: {{ $json.body.product.name }}\nOferta: {{ $json.body.product.offer.name }}\n\n\"}\n    ]}\n  ) {\n    card {\n      title\n    }\n  }\n}                                                 ",
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJQaXBlZnkiLCJpYXQiOjE2OTE2MTQ2MjUsImp0aSI6IjllZWFjMDcxLWY3YmUtNDdjOC1iODU5LTE3N2Y0NjcxMzZmMiIsInN1YiI6MzAyMjE1NDA1LCJ1c2VyIjp7ImlkIjozMDIyMTU0MDUsImVtYWlsIjoiZmFiaW8uanVuaW9yQHY0Y29tcGFueS5jb20iLCJhcHBsaWNhdGlvbiI6MzAwMjY2MzAwLCJzY29wZXMiOltdfSwiaW50ZXJmYWNlX3V1aWQiOm51bGx9.xrPjSHLFp4zGwKBF5BB3dwsFgrsRTqzgwllIkhoN6HgqlaFS-VRiPPs_Rzq36sCf3o5FGpFV2gtXziLsNn5whw"
+            }
+          ]
+        }
+      },
+      "id": "43be098d-5ce1-4362-92e8-73d93563bf7b",
+      "name": "pipefy_assinatura_ciclo_1",
+      "type": "n8n-nodes-base.graphql",
+      "typeVersion": 1,
+      "position": [
+        280,
+        140
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "endpoint": "https://api.pipefy.com/graphql",
+        "requestFormat": "json",
+        "query": "=mutation {\n  createCard(input: {\n    pipe_id: 302245050,\n    title: \"{{ $json.body.contact.name }}\",\n    fields_attributes:[\n      {field_id: \"nome_do_cliente\", field_value: \"{{ $json.body.contact.name }}\"},\n      {field_id: \"raz_o_social\", field_value: \"\"},\n      {field_id: \"contato\", field_value: \"+{{ $json.body.contact.phone_local_code }} {{ $json.body.contact.phone_number }}\"},\n      {field_id: \"e_mail\", field_value: \"{{ $json.body.contact.email }}\"},\n      {field_id: \"servi_o\", field_value: \"{{ $json.body.product.name }}\"},\n      {field_id: \"fee\", field_value: \"{{ $json.body.payment.net }}\"},\n      {field_id: \"valor_total_do_servi_o\", field_value: \"{{ $json.body.payment.installments.value }}\"},\n      {field_id: \"c_digo_guru\", field_value: \"{{ $json.body.payment.marketplace_id }}\"},\n      {field_id: \"c_digo_pagar_me\", field_value: \"{{ $json.body.product.id }}\"},\n      {field_id: \"observa_es_gerais\", field_value: \"Criada em: {{ $json.body.dates.created_at }}\nStatus em: {{ $json.body.dates.confirmed_at }}\nForma de pagamento: {{ $json.body.payment.method }}\nStatus: {{ $json.body.status }}\nProduto: {{ $json.body.product.name }}\nOferta: {{ $json.body.product.offer.name }}\nMarketplace: {{ $json.body.payment.acquirer.name }}\nValor afiliado: {{ $json.body.payment.affiliate_value }}\n\n\"}\n      ]}\n  ) {\n    card {\n      title\n    }\n  }\n}                                                 ",
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJQaXBlZnkiLCJpYXQiOjE2OTE2MTQ2MjUsImp0aSI6IjllZWFjMDcxLWY3YmUtNDdjOC1iODU5LTE3N2Y0NjcxMzZmMiIsInN1YiI6MzAyMjE1NDA1LCJ1c2VyIjp7ImlkIjozMDIyMTU0MDUsImVtYWlsIjoiZmFiaW8uanVuaW9yQHY0Y29tcGFueS5jb20iLCJhcHBsaWNhdGlvbiI6MzAwMjY2MzAwLCJzY29wZXMiOltdfSwiaW50ZXJmYWNlX3V1aWQiOm51bGx9.xrPjSHLFp4zGwKBF5BB3dwsFgrsRTqzgwllIkhoN6HgqlaFS-VRiPPs_Rzq36sCf3o5FGpFV2gtXziLsNn5whw"
+            }
+          ]
+        }
+      },
+      "id": "08639990-5b96-4f34-8898-997b2ad47545",
+      "name": "pipefy_assinatura_ciclo_1_statuso_nao_aprovado",
+      "type": "n8n-nodes-base.graphql",
+      "typeVersion": 1,
+      "position": [
+        620,
+        200
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "endpoint": "https://api.pipefy.com/graphql",
+        "requestFormat": "json",
+        "query": "=mutation {\n  createCard(input: {\n    pipe_id: 302245050,\n    title: \"{{ $json.body.contact.name }}\",\n    fields_attributes:[\n      {field_id: \"nome_do_cliente\", field_value: \"{{ $json.body.contact.name }}\"},\n      {field_id: \"raz_o_social\", field_value: \"\"},\n      {field_id: \"contato\", field_value: \"+{{ $json.body.contact.phone_local_code }} {{ $json.body.contact.phone_number }}\"},\n      {field_id: \"e_mail\", field_value: \"{{ $json.body.contact.email }}\"},\n      {field_id: \"servi_o\", field_value: \"{{ $json.body.product.name }}\"},\n      {field_id: \"fee\", field_value: \"{{ $json.body.payment.net }}\"},\n      {field_id: \"valor_total_do_servi_o\", field_value: \"{{ $json.body.payment.installments.value }}\"},\n      {field_id: \"c_digo_guru\", field_value: \"{{ $json.body.payment.marketplace_id }}\"},\n      {field_id: \"c_digo_pagar_me\", field_value: \"{{ $json.body.product.id }}\"},\n      {field_id: \"observa_es_gerais\", field_value: \"Criada em: {{ $json.body.invoice.created_at }}\nStatus em: {{ $json.body.invoice.charge_at }}\nForma de pagamento: {{ $json.body.payment.method }}\nCiclo: {{ $json.body.invoice.cycle }}\nStatus: {{ $json.body.status }}/{{ $json.body.invoice.status }}\nProduto: {{ $json.body.product.name }}\nOferta: {{ $json.body.product.offer.name }}\nMarketplace: {{ $json.body.payment.acquirer.name }}\nValor afiliado: {{ $json.body.payment.affiliate_value }}\n\n\"}\n      ]}\n  ) {\n    card {\n      title\n    }\n  }\n}                                               ",
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJQaXBlZnkiLCJpYXQiOjE2OTE2MTQ2MjUsImp0aSI6IjllZWFjMDcxLWY3YmUtNDdjOC1iODU5LTE3N2Y0NjcxMzZmMiIsInN1YiI6MzAyMjE1NDA1LCJ1c2VyIjp7ImlkIjozMDIyMTU0MDUsImVtYWlsIjoiZmFiaW8uanVuaW9yQHY0Y29tcGFueS5jb20iLCJhcHBsaWNhdGlvbiI6MzAwMjY2MzAwLCJzY29wZXMiOltdfSwiaW50ZXJmYWNlX3V1aWQiOm51bGx9.xrPjSHLFp4zGwKBF5BB3dwsFgrsRTqzgwllIkhoN6HgqlaFS-VRiPPs_Rzq36sCf3o5FGpFV2gtXziLsNn5whw"
+            }
+          ]
+        }
+      },
+      "id": "a28e67ea-5501-430b-b9f9-7e813ab2b893",
+      "name": "pipefy_venda_inadinplencia",
+      "type": "n8n-nodes-base.graphql",
+      "typeVersion": 1,
+      "position": [
+        900,
+        320
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "endpoint": "https://api.pipefy.com/graphql",
+        "requestFormat": "json",
+        "query": "=mutation {\n  createCard(input: {\n    pipe_id: 302245050,\n    title: \"{{ $json.body.contact.name }}\",\n    fields_attributes:[\n      {field_id: \"nome_do_cliente\", field_value: \"{{ $json.body.contact.name }}\"},\n      {field_id: \"raz_o_social\", field_value: \"\"},\n      {field_id: \"contato\", field_value: \"+{{ $json.body.contact.phone_local_code }} {{ $json.body.contact.phone_number }}\"},\n      {field_id: \"e_mail\", field_value: \"{{ $json.body.contact.email }}\"},\n      {field_id: \"servi_o\", field_value: \"{{ $json.body.product.name }}\"},\n      {field_id: \"fee\", field_value: \"{{ $json.body.payment.net }}\"},\n      {field_id: \"valor_total_do_servi_o\", field_value: \"{{ $json.body.payment.installments.value }}\"},\n      {field_id: \"c_digo_guru\", field_value: \"{{ $json.body.payment.marketplace_id }}\"},\n      {field_id: \"c_digo_pagar_me\", field_value: \"{{ $json.body.product.id }}\"},\n      {field_id: \"observa_es_gerais\", field_value: \"Criada em: {{ $json.body.dates.created_at }}\nStatus em: {{ $json.body.dates.confirmed_at }}\nForma de pagamento: {{ $json.body.payment.method }}\nStatus: {{ $json.body.status }}\nProduto: {{ $json.body.product.name }}\nOferta: {{ $json.body.product.offer.name }}\nMarketplace: {{ $json.body.payment.acquirer.name }}\nValor afiliado: {{ $json.body.payment.affiliate_value }}\n\n\"}\n      ]}\n  ) {\n    card {\n      title\n    }\n  }\n}                                                 ",
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJQaXBlZnkiLCJpYXQiOjE2OTE2MTQ2MjUsImp0aSI6IjllZWFjMDcxLWY3YmUtNDdjOC1iODU5LTE3N2Y0NjcxMzZmMiIsInN1YiI6MzAyMjE1NDA1LCJ1c2VyIjp7ImlkIjozMDIyMTU0MDUsImVtYWlsIjoiZmFiaW8uanVuaW9yQHY0Y29tcGFueS5jb20iLCJhcHBsaWNhdGlvbiI6MzAwMjY2MzAwLCJzY29wZXMiOltdfSwiaW50ZXJmYWNlX3V1aWQiOm51bGx9.xrPjSHLFp4zGwKBF5BB3dwsFgrsRTqzgwllIkhoN6HgqlaFS-VRiPPs_Rzq36sCf3o5FGpFV2gtXziLsNn5whw"
+            }
+          ]
+        }
+      },
+      "id": "36e5e7c7-b1a9-4812-9d61-04a408bd1762",
+      "name": "pipefy_venda_cancelada",
+      "type": "n8n-nodes-base.graphql",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        520
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.status }}",
+              "value2": "refunded"
+            }
+          ]
+        }
+      },
+      "id": "5fd9355b-53ee-47b4-b35d-740fbd6bd172",
+      "name": "verifica_se_reembolsada",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.status }}",
+              "value2": "chargeback"
+            }
+          ]
+        }
+      },
+      "id": "1f34ba32-d5bf-418b-8d47-2e69f42fbf14",
+      "name": "verifica_se_reclamada",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "endpoint": "https://api.pipefy.com/graphql",
+        "requestFormat": "json",
+        "query": "=mutation {\n  createCard(input: {\n    pipe_id: 302256530,\n    title: \"❌ Venda reembolsada no GURU: {{ $json.body.contact.company_name }}{{ $json.body.contact.name }}\",\n    fields_attributes:[\n      {field_id: \"t_tulo_da_tarefa\", field_value: \"❌ Venda reembolsada no GURU: {{ $json.body.contact.company_name }}{{ $json.body.contact.name }}\"},\n      {field_id: \"descri_o\", field_value: \"Empresa: {{ $json.body.contact.company_name }}\nCriada em: {{ $json.body.dates.created_at }}\nAprovada em: {{ $json.body.dates.confirmed_at }}\nCPF/CNPJ: {{ $json.body.contact.doc }}\nNome do Cliente: {{ $json.body.contact.name }}\nEmail do Cliente: {{ $json.body.contact.email }}\nTelefone Cliente: +{{ $json.body.contact.phone_local_code }} {{ $json.body.contact.phone_number }}\nCidade/Estado Cliente: {{ $json.body.contact.address_city }}/{{ $json.body.contact.address_state }}\nRoyalties: R${{ $json.body.payment.affiliate_value }}\nValor Unidade: R${{ $json.body.payment.net }}\nValor do produto: R${{ $json.body.product.unit_value }}\nParcelas: {{ $json.body.payment.installments.qty }} x R$:{{ $json.body.payment.installments.value }}\nMarketplace: {{ $json.body.payment.marketplace_name }}\nNome do produto: {{ $json.body.product.name }}\nOferta: {{ $json.body.product.offer.name }}\nPercentual V4/Franqueado:\nForma de pagamento: {{ $json.body.payment.method }}\nStatus: {{ $json.body.status }}\nMotivo: {{ $json.body.payment.refund_reason }}\nCódigo venda GURU: {{ $json.body.payment.acquirer.tid }}\nCódigo: {{ $json.body.product.id }}\"}\n    ]}\n  ) {\n    card {\n      title\n    }\n  }\n}                                                   ",
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJQaXBlZnkiLCJpYXQiOjE2OTE2MTQ2MjUsImp0aSI6IjllZWFjMDcxLWY3YmUtNDdjOC1iODU5LTE3N2Y0NjcxMzZmMiIsInN1YiI6MzAyMjE1NDA1LCJ1c2VyIjp7ImlkIjozMDIyMTU0MDUsImVtYWlsIjoiZmFiaW8uanVuaW9yQHY0Y29tcGFueS5jb20iLCJhcHBsaWNhdGlvbiI6MzAwMjY2MzAwLCJzY29wZXMiOltdfSwiaW50ZXJmYWNlX3V1aWQiOm51bGx9.xrPjSHLFp4zGwKBF5BB3dwsFgrsRTqzgwllIkhoN6HgqlaFS-VRiPPs_Rzq36sCf3o5FGpFV2gtXziLsNn5whw"
+            }
+          ]
+        }
+      },
+      "id": "0eba6a0b-2f31-41cf-b28e-888ddd34e7d5",
+      "name": "pipefy_venda_reembolsada",
+      "type": "n8n-nodes-base.graphql",
+      "typeVersion": 1,
+      "position": [
+        -580,
+        -180
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "endpoint": "https://api.pipefy.com/graphql",
+        "requestFormat": "json",
+        "query": "=mutation {\n  createCard(input: {\n    pipe_id: 302256530,\n    title: \"⭕ Venda reclamada no GURU: {{ $json.body.contact.company_name }}{{ $json.body.contact.name }}\",\n    fields_attributes:[\n      {field_id: \"t_tulo_da_tarefa\", field_value: \"⭕ Venda reclamada no GURU: {{ $json.body.contact.company_name }}{{ $json.body.contact.name }}\"},\n      {field_id: \"descri_o\", field_value: \"Empresa: {{ $json.body.contact.company_name }}\nCriada em: {{ $json.body.dates.created_at }}\nAprovada em: {{ $json.body.dates.confirmed_at }}\nCPF/CNPJ: {{ $json.body.contact.doc }}\nNome do Cliente: {{ $json.body.contact.name }}\nEmail do Cliente: {{ $json.body.contact.email }}\nTelefone Cliente: +{{ $json.body.contact.phone_local_code }} {{ $json.body.contact.phone_number }}\nCidade/Estado Cliente: {{ $json.body.contact.address_city }}/{{ $json.body.contact.address_state }}\nRoyalties: R${{ $json.body.payment.affiliate_value }}\nValor Unidade: R${{ $json.body.payment.net }}\nValor do produto: R${{ $json.body.product.unit_value }}\nParcelas: {{ $json.body.payment.installments.qty }} x R$:{{ $json.body.payment.installments.value }}\nMarketplace: {{ $json.body.payment.marketplace_name }}\nNome do produto: {{ $json.body.product.name }}\nOferta: {{ $json.body.product.offer.name }}\nPercentual V4/Franqueado:\nForma de pagamento: {{ $json.body.payment.method }}\nStatus: {{ $json.body.status }}\nMotivo: {{ $json.body.payment.refund_reason }}\nCódigo venda GURU: {{ $json.body.payment.acquirer.tid }}\nCódigo: {{ $json.body.product.id }}\"}\n    ]}\n  ) {\n    card {\n      title\n    }\n  }\n}                                                   ",
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJQaXBlZnkiLCJpYXQiOjE2OTE2MTQ2MjUsImp0aSI6IjllZWFjMDcxLWY3YmUtNDdjOC1iODU5LTE3N2Y0NjcxMzZmMiIsInN1YiI6MzAyMjE1NDA1LCJ1c2VyIjp7ImlkIjozMDIyMTU0MDUsImVtYWlsIjoiZmFiaW8uanVuaW9yQHY0Y29tcGFueS5jb20iLCJhcHBsaWNhdGlvbiI6MzAwMjY2MzAwLCJzY29wZXMiOltdfSwiaW50ZXJmYWNlX3V1aWQiOm51bGx9.xrPjSHLFp4zGwKBF5BB3dwsFgrsRTqzgwllIkhoN6HgqlaFS-VRiPPs_Rzq36sCf3o5FGpFV2gtXziLsNn5whw"
+            }
+          ]
+        }
+      },
+      "id": "437f694f-9f74-46fd-b632-ab4c7af6ee2e",
+      "name": "pipefy_venda_reclamada",
+      "type": "n8n-nodes-base.graphql",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        -100
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.status }}",
+              "operation": "notEqual",
+              "value2": "approved"
+            }
+          ]
+        }
+      },
+      "id": "e8cb8724-446d-4676-9e66-1cca7e40d896",
+      "name": "verifica_status_aprovado_ou_nao",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        440,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "endpoint": "https://api.pipefy.com/graphql",
+        "requestFormat": "json",
+        "query": "=mutation {\n  createCard(input: {\n    pipe_id: 302245050,\n    title: \"{{ $json.body.contact.name }}\",\n    fields_attributes:[\n      {field_id: \"nome_do_cliente\", field_value: \"{{ $json.body.contact.name }}\"},\n      {field_id: \"raz_o_social\", field_value: \"\"},\n      {field_id: \"contato\", field_value: \"+{{ $json.body.contact.phone_local_code }} {{ $json.body.contact.phone_number }}\"},\n      {field_id: \"e_mail\", field_value: \"{{ $json.body.contact.email }}\"},\n      {field_id: \"servi_o\", field_value: \"{{ $json.body.product.name }}\"},\n      {field_id: \"fee\", field_value: \"{{ $json.body.payment.net }}\"},\n      {field_id: \"valor_total_do_servi_o\", field_value: \"{{ $json.body.payment.installments.value }}\"},\n      {field_id: \"c_digo_guru\", field_value: \"{{ $json.body.payment.marketplace_id }}\"},\n      {field_id: \"c_digo_pagar_me\", field_value: \"{{ $json.body.product.id }}\"},\n      {field_id: \"observa_es_gerais\", field_value: \"Criada em: {{ $json.body.invoice.created_at }}\nStatus em: {{ $json.body.invoice.charge_at }}\nForma de pagamento: {{ $json.body.payment.method }}\nCiclo: {{ $json.body.invoice.cycle }}\nStatus: {{ $json.body.status }}/{{ $json.body.invoice.status }}\nProduto: {{ $json.body.product.name }}\nOferta: {{ $json.body.product.offer.name }}\nMarketplace: {{ $json.body.payment.acquirer.name }}\nValor afiliado: {{ $json.body.payment.affiliate_value }}\n\n\"}\n      ]}\n  ) {\n    card {\n      title\n    }\n  }\n}                                               ",
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJQaXBlZnkiLCJpYXQiOjE2OTE2MTQ2MjUsImp0aSI6IjllZWFjMDcxLWY3YmUtNDdjOC1iODU5LTE3N2Y0NjcxMzZmMiIsInN1YiI6MzAyMjE1NDA1LCJ1c2VyIjp7ImlkIjozMDIyMTU0MDUsImVtYWlsIjoiZmFiaW8uanVuaW9yQHY0Y29tcGFueS5jb20iLCJhcHBsaWNhdGlvbiI6MzAwMjY2MzAwLCJzY29wZXMiOltdfSwiaW50ZXJmYWNlX3V1aWQiOm51bGx9.xrPjSHLFp4zGwKBF5BB3dwsFgrsRTqzgwllIkhoN6HgqlaFS-VRiPPs_Rzq36sCf3o5FGpFV2gtXziLsNn5whw"
+            }
+          ]
+        }
+      },
+      "id": "82105037-0938-4a70-9a3d-7f12cb6fd7aa",
+      "name": "pipefy_venda_inadinplencia1",
+      "type": "n8n-nodes-base.graphql",
+      "typeVersion": 1,
+      "position": [
+        720,
+        800
+      ],
+      "continueOnFail": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-09-05T13:04:38.000Z",
+  "versionId": "811bb292-144a-4ce2-a10f-e28815106167"
+}
