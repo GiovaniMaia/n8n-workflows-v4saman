@@ -1,0 +1,616 @@
+{
+  "active": true,
+  "connections": {
+    "etapa lead": {
+      "main": [
+        [
+          {
+            "node": "adicionando google sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "leads": {
+      "main": [
+        [
+          {
+            "node": "seta leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "seta leads": {
+      "main": [
+        [
+          {
+            "node": "contatos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "contatos": {
+      "main": [
+        [
+          {
+            "node": "seta contatos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "seta contatos": {
+      "main": [
+        [
+          {
+            "node": "empresa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "empresa": {
+      "main": [
+        [
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "usuário responsável",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "usuário responsável": {
+      "main": [
+        [
+          {
+            "node": "etapa lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-24T18:03:41.849Z",
+  "id": "DgDPunMD46BKe4WB",
+  "meta": null,
+  "name": "BellDecor | Planilha de dados do CRM |",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "=https://contatobelldecorcombr.kommo.com/api/v4/leads/pipelines/{{ $('leads').item.json.pipeline_id }}/statuses/{{ $('leads').item.json.status_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "with",
+              "value": "contacts"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "b4d3dd09-0de7-49a7-927f-1958eefae3c6",
+      "name": "etapa lead",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        940,
+        140
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "4VFgxMwtsUqkXS5E",
+          "name": "Kommo BellDecor"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "movimentoleads",
+        "options": {}
+      },
+      "id": "b8291ca2-c412-49e2-9052-71ae49a85d1e",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        140
+      ],
+      "webhookId": "b15a33c7-f762-4920-a25c-cc5c83a5e50e"
+    },
+    {
+      "parameters": {
+        "url": "=https://contatobelldecorcombr.kommo.com/api/v4/leads/{{ $('Webhook').item.json[\"body\"][\"leads[status][0][id]\"] }}{{ $('Webhook').item.json.body['leads[add][0][id]'] }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "with",
+              "value": "contacts"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "d1954cf4-e8a7-4d24-982c-7df54cb5e6fa",
+      "name": "leads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -40,
+        140
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "oAuth2Api": {
+          "id": "4VFgxMwtsUqkXS5E",
+          "name": "Kommo BellDecor"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const customFields = $json[\"custom_fields_values\"] || [];\nconst desiredFieldIds = [605496, 605498, 605500, 605502, 605504, 632678, 632680, 632682, ];\n\nconst fieldValues = {};\n\nfor (const desiredFieldId of desiredFieldIds) {\n    const foundField = customFields.find(field => field.field_id === desiredFieldId);\n    if (foundField) {\n        fieldValues[desiredFieldId] = {\n            field_name: foundField.field_name,\n            value: foundField.values[0].value\n        };\n    }\n}\n\nreturn [{ fieldValues }];\n"
+      },
+      "id": "e493629e-29a1-4005-a5f1-0f6dd0379a96",
+      "name": "seta leads",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        140
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "=https://contatobelldecorcombr.kommo.com/api/v4/contacts/{{ $('leads').item.json._embedded.contacts[0].id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "80846851-d645-406f-a96f-e1308676d98d",
+      "name": "contatos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        240,
+        140
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "4VFgxMwtsUqkXS5E",
+          "name": "Kommo BellDecor"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const customFields = $json[\"custom_fields_values\"] || [];\nconst desiredFieldIds = [587952, 587954, 587950\n/* adicione os outros IDs aqui */];\n\nconst fieldValues = {};\n\nfor (const desiredFieldId of desiredFieldIds) {\n    const foundField = customFields.find(field => field.field_id === desiredFieldId);\n    if (foundField) {\n        fieldValues[desiredFieldId] = {\n            field_name: foundField.field_name,\n            value: foundField.values[0].value\n        };\n    }\n}\n\nreturn [{ fieldValues }];\n"
+      },
+      "id": "163f4572-4e43-425f-a0e4-ad29464afddd",
+      "name": "seta contatos",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        380,
+        140
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "=https://contatobelldecorcombr.kommo.com/api/v4/companies/{{ $('leads').item.json._embedded.companies[0].id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "with",
+              "value": "contacts"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "77d8949b-b056-45ec-bfbd-3af1e68ab719",
+      "name": "empresa",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        520,
+        140
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "4VFgxMwtsUqkXS5E",
+          "name": "Kommo BellDecor"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $('leads').item.json.updated_at }}",
+        "format": "custom",
+        "customFormat": "dd/MM/yyyy",
+        "options": {
+          "timezone": false
+        }
+      },
+      "id": "886f894f-c5c5-4dc4-b561-93880fe4b615",
+      "name": "Date & Time",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        660,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://contatobelldecorcombr.kommo.com/api/v4/users/{{ $('leads').item.json.responsible_user_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "with",
+              "value": "contacts"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "9dbb48a8-168b-4895-8dea-aa5073bcd8ac",
+      "name": "usuário responsável",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        800,
+        140
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "4VFgxMwtsUqkXS5E",
+          "name": "Kommo BellDecor"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1alxnPZtTqDC1JIhZ5-wVr7c6X926ZEJcurv2uyp4LDc/edit#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Acompanhamento de Lead",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1alxnPZtTqDC1JIhZ5-wVr7c6X926ZEJcurv2uyp4LDc/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Data e hora de criação": "={{ $('Date & Time').item.json.formattedDate }}",
+            "Responsável": "={{ $('usuário responsável').item.json.name }}",
+            "Email do Lead": "={{ $('seta contatos').item.json.fieldValues[\"587954\"].value }}",
+            "Campanha": "={{ $('seta leads').item.json.fieldValues[\"605502\"].value }}",
+            "Público": "={{ $('seta leads').item.json.fieldValues[\"605498\"].value }}",
+            "Anúncio": "={{ $('seta leads').item.json.fieldValues[\"605500\"].value }}",
+            "Termo de Pesquisa": "={{ $('seta leads').item.json.fieldValues[\"605504\"].value }}",
+            "Valor": "={{ $('leads').item.json.price }}",
+            "Cidade": "={{ $('seta leads').item.json.fieldValues[\"632680\"].value }}",
+            "Serviço de Interesse": "={{ $('seta leads').item.json.fieldValues[\"632678\"].value }}",
+            "Data de Reforma/Fabricação": "={{ $('seta leads').item.json.fieldValues[\"632682\"].value }}",
+            "Data e hora movimentação": "={{ $('Date & Time').item.json.formattedDate }}",
+            "Etapa": "={{ $json.name }}",
+            "Nome": "={{ $('leads').item.json.name }}",
+            "Telefone": "={{ $('seta contatos').item.json.fieldValues[\"587952\"].value }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Data e hora de criação",
+              "displayName": "Data e hora de criação",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Data e hora movimentação",
+              "displayName": "Data e hora movimentação",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Responsável",
+              "displayName": "Responsável",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Etapa",
+              "displayName": "Etapa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Telefone",
+              "displayName": "Telefone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email do Lead",
+              "displayName": "Email do Lead",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Motivo de Perda",
+              "displayName": "Motivo de Perda",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Canal",
+              "displayName": "Canal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Campanha",
+              "displayName": "Campanha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Público",
+              "displayName": "Público",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Anúncio",
+              "displayName": "Anúncio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Termo de Pesquisa",
+              "displayName": "Termo de Pesquisa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Valor",
+              "displayName": "Valor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cidade",
+              "displayName": "Cidade",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Serviço de Interesse",
+              "displayName": "Serviço de Interesse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Data de Reforma/Fabricação",
+              "displayName": "Data de Reforma/Fabricação",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e5df224b-b465-47d3-a7f0-62ee4129f4d4",
+      "name": "adicionando google sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        1080,
+        140
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QTcF9qaFX03vTQ2g",
+          "name": "Google Sheets account 4"
+        }
+      },
+      "continueOnFail": true
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "connection": "upgrade",
+            "host": "n8.v4saman.com",
+            "x-forwarded-proto": "https",
+            "x-forwarded-ssl": "on",
+            "x-real-ip": "169.150.216.81",
+            "x-forwarded-for": "169.150.216.81",
+            "content-length": "317",
+            "user-agent": "amoCRM-Webhooks/3.0",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-amocrm-requestid": "8cbc03d3-83bf-4502-b93e-fef06f0a011c",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "leads[status][0][id]": "16097573",
+            "leads[status][0][status_id]": "54252167",
+            "leads[status][0][pipeline_id]": "6263223",
+            "leads[status][0][old_status_id]": "53915083",
+            "leads[status][0][old_pipeline_id]": "6263223",
+            "account[id]": "30791555",
+            "account[subdomain]": "contatobelldecorcombr"
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-10-23T17:25:40.134Z",
+      "updatedAt": "2023-10-23T17:25:40.134Z",
+      "id": "na4Vpv4OM2OCp4cf",
+      "name": "Cliente"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-11T17:50:35.000Z",
+  "versionId": "6ebd80cc-741d-4a01-ad80-e9fb3e7694fd"
+}
