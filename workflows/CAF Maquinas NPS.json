@@ -1,0 +1,328 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "contatos": {
+      "main": [
+        [
+          {
+            "node": "setando contatos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "leads": {
+      "main": [
+        [
+          {
+            "node": "contatos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setando contatos": {
+      "main": [
+        [
+          {
+            "node": "Sheets NPS CAF Maquinas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-13T18:44:53.027Z",
+  "id": "YFvljaIxz3oM9F8x",
+  "meta": null,
+  "name": "CAF Maquinas NPS",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "497345ad-456c-4667-b9c2-3c7861a1463a",
+        "options": {}
+      },
+      "id": "c799c865-0e82-4e5f-b255-7b483a8d0194",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        400,
+        280
+      ],
+      "webhookId": "497345ad-456c-4667-b9c2-3c7861a1463a"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1--FouoSlI-M8xJv9k4W2f1k_EPTkQXsABXEaIq_m9wI/edit#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "NPS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1--FouoSlI-M8xJv9k4W2f1k_EPTkQXsABXEaIq_m9wI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "NOME": "={{ $('contatos').item.json.name }}",
+            "E-MAIL": "={{ $json.fieldValues[\"78236\"].value }}",
+            "TELEFONE": "={{ $json.fieldValues[\"78234\"].value }}",
+            "NPS": "={{ $json.fieldValues[\"1099553\"].value }}",
+            "CIDADE": "={{ $json.fieldValues[\"1098717\"].value }}",
+            "ESTADO": "={{ $json.fieldValues[\"1098719\"].value }}",
+            "CNPJ": "={{ $json.fieldValues[\"1095090\"].value }}",
+            "RAMO DA ATIVIDADE": "={{ $json.fieldValues[\"1098715\"].value }} {{ $json.fieldValues[\"78232\"].value }}",
+            "POSIÇÃO": "={{ $json.fieldValues[\"78232\"].value }}"
+          },
+          "matchingColumns": [
+            "TELEFONE"
+          ],
+          "schema": [
+            {
+              "id": "NOME",
+              "displayName": "NOME",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "E-MAIL",
+              "displayName": "E-MAIL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TELEFONE",
+              "displayName": "TELEFONE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "NPS",
+              "displayName": "NPS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CIDADE",
+              "displayName": "CIDADE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ESTADO",
+              "displayName": "ESTADO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CNPJ",
+              "displayName": "CNPJ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "RAMO DA ATIVIDADE",
+              "displayName": "RAMO DA ATIVIDADE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "POSIÇÃO",
+              "displayName": "POSIÇÃO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1bf485c5-18a0-4b5e-9ec0-9aa8e0b9da70",
+      "name": "Sheets NPS CAF Maquinas",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        980,
+        280
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QTcF9qaFX03vTQ2g",
+          "name": "Google Sheets account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://cafmaquinas.kommo.com/api/v4/contacts/{{ $json._embedded.contacts[0].id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "e824583d-6976-4a9a-b494-4bd16a599e7d",
+      "name": "contatos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        700,
+        280
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "oAuth2Api": {
+          "id": "7kyvnxlpRQFpXipK",
+          "name": "CAF Maquinas"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "=https://cafmaquinas.kommo.com//api/v4/leads/{{ $json.body['leads[add][0][id]'] }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "with",
+              "value": "contacts"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "2fc80fa9-fcc7-4596-8be3-a83f0a8975cb",
+      "name": "leads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        560,
+        280
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "oAuth2Api": {
+          "id": "7kyvnxlpRQFpXipK",
+          "name": "CAF Maquinas"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const customFields = $json[\"custom_fields_values\"] || [];\nconst desiredFieldIds = [78234, 1099553, 78232, 78236, 1098719, 1098717, 1098715, 1095090\n/* adicione os outros IDs aqui */];\n\nconst fieldValues = {};\n\nfor (const desiredFieldId of desiredFieldIds) {\n    const foundField = customFields.find(field => field.field_id === desiredFieldId);\n    if (foundField) {\n        fieldValues[desiredFieldId] = {\n            field_name: foundField.field_name,\n            value: foundField.values[0].value\n        };\n    }\n}\n\nreturn [{ fieldValues }];\n"
+      },
+      "id": "76fb4739-b8de-4a70-9da1-a6e55f3af4dd",
+      "name": "setando contatos",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        840,
+        280
+      ],
+      "continueOnFail": true
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "connection": "upgrade",
+            "host": "n8.v4saman.com",
+            "x-forwarded-proto": "https",
+            "x-forwarded-ssl": "on",
+            "x-real-ip": "169.150.216.80",
+            "x-forwarded-for": "169.150.216.80",
+            "content-length": "186",
+            "user-agent": "amoCRM-Webhooks/3.0",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-amocrm-requestid": "fd6924e6-576b-444a-9e53-72c524a6b748",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "leads[add][0][id]": "10452511",
+            "leads[add][0][status_id]": "142",
+            "leads[add][0][pipeline_id]": "6571831",
+            "account[id]": "31039983",
+            "account[subdomain]": "cafmaquinas"
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-03-22T14:37:55.000Z",
+  "versionId": "0ea19f4f-26e0-4165-ae4a-35fbaa6bd3d1"
+}
