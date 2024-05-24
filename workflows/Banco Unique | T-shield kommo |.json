@@ -1,0 +1,1361 @@
+{
+  "active": true,
+  "connections": {
+    "leads": {
+      "main": [
+        [
+          {
+            "node": "contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook - análise de documentos kommo crm": {
+      "main": [
+        [
+          {
+            "node": "leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "contacts": {
+      "main": [
+        [
+          {
+            "node": "setando ids nos campos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setando ids nos campos": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "link validação": {
+      "main": [
+        [
+          {
+            "node": "adicionar url lead kommo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "login/token t-shield": {
+      "main": [
+        [
+          {
+            "node": "link validação",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "adicionar url lead kommo": {
+      "main": [
+        [
+          {
+            "node": "mover de etapa para enviar link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mover de etapa para enviar link": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "filtrando leads na fase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "buscando contato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "filtrando leads na fase": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "buscando contato": {
+      "main": [
+        [
+          {
+            "node": "setando ids nos campos contato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setando ids nos campos contato": {
+      "main": [
+        [
+          {
+            "node": "verifica se o cpf é o do webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "verifica se o cpf é o do webhook": {
+      "main": [
+        [
+          {
+            "node": "adicionar validação kommo",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "adicionar validação kommo": {
+      "main": [
+        [
+          {
+            "node": "mover etapa para contratos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "login/token t-shield 1": {
+      "main": [
+        [
+          {
+            "node": "link validação1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "login/token t-shield",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [],
+        [
+          {
+            "node": "login/token t-shield 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "link validação1": {
+      "main": [
+        [
+          {
+            "node": "adicionar url lead kommo1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "adicionar url lead kommo1": {
+      "main": [
+        [
+          {
+            "node": "mover de etapa para enviar link1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mover de etapa para enviar link1": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mover etapa para contratos": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "filtrando leads na fase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "filtrando leads na fase1": {
+      "main": [
+        [
+          {
+            "node": "Item Lists1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches1": {
+      "main": [
+        [
+          {
+            "node": "buscando contato1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "buscando contato1": {
+      "main": [
+        [
+          {
+            "node": "setando ids nos campos contato1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setando ids nos campos contato1": {
+      "main": [
+        [
+          {
+            "node": "verifica se o cnpj é o do webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "adicionar validação kommo1": {
+      "main": [
+        [
+          {
+            "node": "mover etapa para contratos1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "verifica se o cnpj é o do webhook1": {
+      "main": [
+        [
+          {
+            "node": "adicionar validação kommo1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mover etapa para contratos1": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-10-25T13:35:22.914Z",
+  "id": "MXaJcAIJ0u59g36r",
+  "meta": null,
+  "name": "Banco Unique | T-shield kommo |",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/leads/{{ $json.body['leads[status][0][id]'] }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "with",
+              "value": "contacts"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "3bae5517-64c2-4d7b-b98a-0e3a9e45d332",
+      "name": "leads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        300,
+        100
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/contacts/{{ $json._embedded.contacts[0].id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "08c64700-9084-4899-97e5-651e2323ceed",
+      "name": "contacts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        460,
+        100
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "8c03c3a4-ac4f-4567-afb0-3cda703710de",
+        "options": {}
+      },
+      "id": "936cc9db-dee0-407a-9bde-d75f2a444d14",
+      "name": "Webhook - análise de documentos kommo crm",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        140,
+        100
+      ],
+      "webhookId": "8c03c3a4-ac4f-4567-afb0-3cda703710de"
+    },
+    {
+      "parameters": {
+        "jsCode": "const customFields = $json[\"custom_fields_values\"] || [];\nconst desiredFieldIds = [856882, 856884, 859398, 859452, 1194864, 1194964, 856880, 859454, 859456, 859506, 860828, 1074028, 1074030, 1074032, 1074034, 1074084, 1194866, 1194966, 1195066, 1403892, 1403894\n/* adicione os outros IDs aqui */];\n\nconst fieldValues = {};\n\nfor (const desiredFieldId of desiredFieldIds) {\n    const foundField = customFields.find(field => field.field_id === desiredFieldId);\n    if (foundField) {\n        fieldValues[desiredFieldId] = {\n            field_name: foundField.field_name,\n            value: foundField.values[0].value\n        };\n    }\n}\n\nreturn [{ fieldValues }];"
+      },
+      "id": "938fb2b5-59e2-4e99-80c7-88ae79bbabd7",
+      "name": "setando ids nos campos",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        620,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/contacts/{{ $('leads').item.json._embedded.contacts[0].id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n        \"id\": {{ $('contacts').item.json.id }},\n        \"first_name\": \"{{ $('contacts').item.json.first_name }}\",\n        \"last_name\": \"\",\n        \"custom_fields_values\": [\n            {\n                \"field_id\": 1403892,\n                \"field_name\": \"Url T-Shield\",\n                \"values\": [\n                    {\n                        \"value\": \"{{ $json.data.url }}\"\n                    }\n                ]\n            }\n        ]\n    }",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "82f0aa67-c9f9-4681-b74b-5e6e4618c3ee",
+      "name": "adicionar url lead kommo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1260,
+        -60
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tshield.com.br/api/query/external/token",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.user.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"client_validation_id\": 2926,\n  \"telephones\": [\n    {\n      \"telephone\": \"{{ $('setando ids nos campos').item.json.fieldValues[\"856882\"].value }}\",\n      \"name\": \"{{ $('leads').item.json.name }}\"\n    }\n  ]\n}   ",
+        "options": {}
+      },
+      "id": "64babb25-25a1-4aab-bd8b-98fb8c92061d",
+      "name": "link validação",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1100,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tshield.com.br/api/login",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{   \n   \"login\": \"BANCOUNIQUE\",   \n   \"password\": \"HcdKVNWO1X\",   \n   \"client\": \"BANCOUNIQUE\" \n}",
+        "options": {
+          "response": {}
+        }
+      },
+      "id": "f3448403-f53b-4cb3-b2f1-bbc418a17567",
+      "name": "login/token t-shield",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        940,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/leads/{{ $('leads').item.json.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"id\": {{ $('leads').item.json.id }},\n    \"name\": \"{{ $('leads').item.json.name }}\",\n    \"status_id\": 61667527\n}\n",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "0af3c86c-5171-42de-ab8b-b4d1d5c9e6ec",
+      "name": "mover de etapa para enviar link",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1420,
+        -60
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "ced5ad85-de54-4bf1-810e-85e82cc00e57",
+      "name": "No Operation, do nothing",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "c442befa-b142-4784-8d51-bbda12536cff",
+        "options": {}
+      },
+      "id": "b5d7536d-f733-4279-b451-f60e47e1abee",
+      "name": "Webhook1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        140,
+        620
+      ],
+      "webhookId": "b98ee637-8760-42a1-a827-97cf74140bf5"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "8ed5221a-c38e-4113-a990-a60d2f200e9d",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        620,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "_embedded.leads",
+        "options": {}
+      },
+      "id": "376ecaa6-3f92-4d8c-bf6b-96fd7c6debdf",
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        460,
+        620
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "5bbd55a3-fc17-4c8c-90f5-8b2dbf801db1",
+      "name": "No Operation, do nothing1",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/leads?filter[statuses][0][status_id]=61667527&filter[statuses][0][pipeline_id]=7115867",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "with",
+              "value": "contacts"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "15f7e3ba-9e7d-45f9-8466-a03033182310",
+      "name": "filtrando leads na fase",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        300,
+        620
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/contacts/{{ $json._embedded.contacts[0].id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "with",
+              "value": "leads"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "175a3811-9f48-4e37-b97f-86bc484a8bb8",
+      "name": "buscando contato",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        800,
+        560
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const customFields = $json[\"custom_fields_values\"] || [];\nconst desiredFieldIds = [856882, 856884, 859398, 859452, 1194864, 1194964, 856880, 859454, 859456, 859506, 860828, 1074028, 1074030, 1074032, 1074034, 1074084, 1194866, 1194966, 1195066, 1403892, 1403894 /* adicione os outros IDs aqui */];\n\nconst fieldValues = {};\n\nfor (const desiredFieldId of desiredFieldIds) {\n    const foundField = customFields.find(field => field.field_id === desiredFieldId);\n    if (foundField) {\n        fieldValues[desiredFieldId] = {\n            field_name: foundField.field_name,\n            value: foundField.values[0].value\n        };\n    }\n}\n\nconst leadsId = $json._embedded.leads[0].id; // Obtenha o ID do primeiro elemento em \"leads\"\n\n// Crie o objeto resultante com \"id\" e \"fieldValues\"\nconst result = {\n    id: $json.id,\n    fieldValues,\n    leads_id: leadsId\n};\n\nreturn [result];\n"
+      },
+      "id": "420ecb05-0940-4167-a153-a6814a90db29",
+      "name": "setando ids nos campos contato",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        940,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $('Webhook1').item.json.body.cpf }}",
+              "operation": "equal",
+              "value2": "={{ $json.fieldValues[\"859398\"].value }}"
+            }
+          ]
+        }
+      },
+      "id": "8d5616f2-cbfe-4d4a-8858-884a82e239e4",
+      "name": "verifica se o cpf é o do webhook",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/contacts/{{ $json.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n        \"id\": {{ $json.leads_id }},\n        \"custom_fields_values\": [\n            {\n                \"field_id\": 1403896,\n                \"field_name\": \"Validação Doc. T-Shield\",\n                \"values\": [\n                    {\n                        \"value\": \"{{ $('Webhook1').item.json.body.id_check.status_process.description }} - {{ $('Webhook1').item.json.body.status.description }}\"\n                    }\n                ]\n            }\n        ]\n    }   ",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "f1cb1922-3349-4a73-898a-75bfc1efcb8a",
+      "name": "adicionar validação kommo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1260,
+        500
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "84ef3cda-c174-4446-bdae-c2d1e3c24d11",
+        "options": {}
+      },
+      "id": "b9659455-8761-468e-a044-f0d5bebafcd9",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        140,
+        960
+      ],
+      "webhookId": "84ef3cda-c174-4446-bdae-c2d1e3c24d11"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tshield.com.br/api/login",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{   \n   \"login\": \"BANCOUNIQUE\",   \n   \"password\": \"HcdKVNWO1X\",   \n   \"client\": \"BANCOUNIQUE\" \n}",
+        "options": {
+          "response": {}
+        }
+      },
+      "id": "b2c5f695-df87-48e6-9769-cc0367d45d2c",
+      "name": "login/token t-shield 1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        940,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.fieldValues[\"859452\"].value }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "PF"
+            },
+            {
+              "value2": "PJ",
+              "output": 3
+            }
+          ]
+        },
+        "fallbackOutput": 1
+      },
+      "id": "0bc0d2af-c1a1-4c3a-8124-72c48bbe666b",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        780,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tshield.com.br/api/company/external/token",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.user.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"client_validation_id\": 2877\n}     ",
+        "options": {}
+      },
+      "id": "139e7cdf-2e9e-4db5-8475-12083d915a64",
+      "name": "link validação1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1100,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/contacts/{{ $('leads').item.json._embedded.contacts[0].id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n        \"id\": {{ $('contacts').item.json.id }},\n        \"first_name\": \"{{ $('contacts').item.json.first_name }}\",\n        \"last_name\": \"\",\n        \"custom_fields_values\": [\n            {\n                \"field_id\": 1403892,\n                \"field_name\": \"Url T-Shield\",\n                \"values\": [\n                    {\n                        \"value\": \"{{ $json.data.url }}\"\n                    }\n                ]\n            }\n        ]\n    }",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "531ec85e-2493-4664-90a3-180595996b0c",
+      "name": "adicionar url lead kommo1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1260,
+        240
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/leads/{{ $('leads').item.json.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"id\": {{ $('leads').item.json.id }},\n    \"name\": \"{{ $('leads').item.json.name }}\",\n    \"status_id\": 61667527\n}\n",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "78226d9f-4c83-41de-9920-8ec61746e345",
+      "name": "mover de etapa para enviar link1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1420,
+        240
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "9b409546-f542-4b79-9c5a-8198e2f2cff6",
+      "name": "No Operation, do nothing2",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Envio de Validação de Documentos\n",
+        "height": 531.6292134831464,
+        "width": 1665.8426966292118
+      },
+      "id": "69f404c8-98c3-4a55-95c1-36c078e8010d",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        100,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Pessoa Fisíca",
+        "height": 80,
+        "width": 150
+      },
+      "id": "c4ecafe9-899e-40ae-9d38-04380ccac0d0",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        740,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Pessoa Jurídica",
+        "height": 80,
+        "width": 150
+      },
+      "id": "5c5a4812-7c42-4da9-a0ca-95d2f450277e",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        740,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/leads/{{ $('setando ids nos campos contato').item.json.leads_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"id\": {{ $('setando ids nos campos contato').item.json.leads_id }},\n    \"status_id\": 61698311\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "004d2aca-9ee3-4482-858c-2ecebd507ddd",
+      "name": "mover etapa para contratos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1420,
+        500
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/leads?filter[statuses][0][status_id]=61667527&filter[statuses][0][pipeline_id]=7115867",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "with",
+              "value": "contacts"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "b9a7dc5d-4f8f-4fe5-be4a-e9c418a772aa",
+      "name": "filtrando leads na fase1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        300,
+        960
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "_embedded.leads",
+        "options": {}
+      },
+      "id": "5a08abef-f31b-4197-8170-7509be01d134",
+      "name": "Item Lists1",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        460,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "26036316-18c9-4269-9e37-3ba6f8471070",
+      "name": "Split In Batches1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        620,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/contacts/{{ $json._embedded.contacts[0].id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "with",
+              "value": "leads"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "566f955c-7953-4bc9-b1f4-018f4e613164",
+      "name": "buscando contato1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        800,
+        900
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const customFields = $json[\"custom_fields_values\"] || [];\nconst desiredFieldIds = [856882, 856884, 859398, 859452, 1194864, 1194964, 856880, 859454, 859456, 859506, 860828, 1074028, 1074030, 1074032, 1074034, 1074084, 1194866, 1194966, 1195066, 1403892, 1403894 /* adicione os outros IDs aqui */];\n\nconst fieldValues = {};\n\nfor (const desiredFieldId of desiredFieldIds) {\n    const foundField = customFields.find(field => field.field_id === desiredFieldId);\n    if (foundField) {\n        fieldValues[desiredFieldId] = {\n            field_name: foundField.field_name,\n            value: foundField.values[0].value\n        };\n    }\n}\n\nconst leadsId = $json._embedded.leads[0].id; // Obtenha o ID do primeiro elemento em \"leads\"\n\n// Crie o objeto resultante com \"id\" e \"fieldValues\"\nconst result = {\n    id: $json.id,\n    fieldValues,\n    leads_id: leadsId\n};\n\nreturn [result];\n"
+      },
+      "id": "44bf9f5c-a743-4c5d-84ed-ee61b87e4eee",
+      "name": "setando ids nos campos contato1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        940,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/contacts/{{ $json.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n        \"id\": {{ $json.leads_id }},\n        \"custom_fields_values\": [\n            {\n                \"field_id\": 1403896,\n                \"field_name\": \"Validação Doc. T-Shield\",\n                \"values\": [\n                    {\n                        \"value\": \"{{ $('Webhook').item.json.body.credit.status_process.description }} - {{ $('Webhook').item.json.body.status.description }}\"\n                    }\n                ]\n            }\n        ]\n    }    ",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "47705757-9bb0-4a83-9c07-76532f307d64",
+      "name": "adicionar validação kommo1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1280,
+        820
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://brunobancouniquecombr.kommo.com/api/v4/leads/{{ $('setando ids nos campos contato1').item.json.leads_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"id\": {{ $('setando ids nos campos contato1').item.json.leads_id }},\n    \"status_id\": 61698311\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "7e8eaf25-c2e4-4025-b0d0-90bcb2959f0c",
+      "name": "mover etapa para contratos1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1440,
+        820
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "eglZRjeeG1eXH8pC",
+          "name": "Kommo Banco Unique"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $('Webhook').item.json.body.cnpj }}",
+              "operation": "equal",
+              "value2": "={{ $json.fieldValues[\"859398\"].value }}"
+            }
+          ]
+        }
+      },
+      "id": "e046c6be-6cca-4a51-9379-8abb84c44032",
+      "name": "verifica se o cnpj é o do webhook1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        900
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "02912c9e-a4db-486e-b026-33046546ecde",
+      "name": "No Operation, do nothing3",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Retorno de validação T-Shield CPF\n",
+        "height": 289.79775280898855,
+        "width": 1672.8988764044952
+      },
+      "id": "77103c70-5011-4c74-815e-8470f497af44",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        100,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Retorno de validação T-Shield CNPJ \n",
+        "height": 335.9101123595507,
+        "width": 1674.6067415730336
+      },
+      "id": "44d0337e-5762-4078-9c8c-53e2997225a6",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        100,
+        800
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook - análise de documentos kommo crm": [
+      {
+        "json": {
+          "headers": {
+            "connection": "upgrade",
+            "host": "n8.v4saman.com",
+            "x-forwarded-proto": "https",
+            "x-forwarded-ssl": "on",
+            "x-real-ip": "142.0.204.92",
+            "x-forwarded-for": "142.0.204.92",
+            "content-length": "317",
+            "user-agent": "amoCRM-Webhooks/3.0",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-amocrm-requestid": "6a40527b-fef9-4caa-882e-d971b4a7fc12",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "leads[status][0][id]": "10294204",
+            "leads[status][0][status_id]": "61655731",
+            "leads[status][0][pipeline_id]": "7115867",
+            "leads[status][0][old_status_id]": "60367571",
+            "leads[status][0][old_pipeline_id]": "7115867",
+            "account[id]": "31498667",
+            "account[subdomain]": "brunobancouniquecombr"
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "connection": "upgrade",
+            "host": "n8.v4saman.com",
+            "x-forwarded-proto": "https",
+            "x-forwarded-ssl": "on",
+            "x-real-ip": "98.142.97.218",
+            "x-forwarded-for": "98.142.97.218",
+            "content-length": "503",
+            "content-type": "application/json; charset=utf-8"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "id": 1138922,
+            "number": "e17dcd25-3d97-4088-b301-a25e629a75bf",
+            "token": "68f0d9fd-eb72-4556-ba38-4623b87f1647",
+            "create_date": "2023-11-01T14:59:53.267",
+            "cpf": null,
+            "cnpj": "50656806000100",
+            "clientvalidation": "Cadastro PJ",
+            "score": null,
+            "id_check": null,
+            "credit": {
+              "status_process": {
+                "id": 9,
+                "description": "Aprovado"
+              },
+              "score": 81
+            },
+            "risk": null,
+            "kyc": null,
+            "emails_confirmation": [],
+            "log": [],
+            "status": {
+              "id": 9,
+              "status": "Aprovado",
+              "date": "2023-11-01T15:00:10.083",
+              "user": 123273,
+              "description": "Aprovação automática"
+            }
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 3,
+  "updatedAt": "2023-11-30T19:00:43.000Z",
+  "versionId": "3144219c-cccd-42c0-b49b-f067ec640d8d"
+}
