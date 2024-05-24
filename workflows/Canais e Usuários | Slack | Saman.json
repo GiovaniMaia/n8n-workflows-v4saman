@@ -1,0 +1,694 @@
+{
+  "active": true,
+  "connections": {
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "informações grupo slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "listando 1 itens por vez",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "todos channel slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "usuario slack": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "informações grupo slack": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "buscando channel por id": {
+      "main": [
+        [
+          {
+            "node": "usuario slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "listando 1 itens por vez": {
+      "main": [
+        [
+          {
+            "node": "buscando channel por id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "todos channel slack": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack2": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches1": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Slack2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-20T17:02:10.529Z",
+  "id": "STLj224XKEZ4qPcl",
+  "meta": null,
+  "name": "Canais e Usuários | Slack | Saman",
+  "nodes": [
+    {
+      "parameters": {
+        "amount": 10,
+        "unit": "seconds"
+      },
+      "id": "50f94a21-35a5-4a01-ac69-66cfbe922894",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        780,
+        100
+      ],
+      "webhookId": "c3db5d49-806a-437e-8b09-c8f02efd7440"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "0c842415-629a-4a63-9181-310d9bf51d1e",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        -100,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "id": "0d58c6af-9000-4f19-9a41-59cd2bc26964",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -420,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1mdwocpCxQGH_OqpxFPQOCPCZgeg7aVAUZk9piZdZ9cM/edit#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1mdwocpCxQGH_OqpxFPQOCPCZgeg7aVAUZk9piZdZ9cM/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "ID",
+              "lookupValue": "={{ $json.creator }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cf4b316d-6658-4ba3-90fb-f65ae3aee079",
+      "name": "usuario slack",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        420,
+        60
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLLX7jfygiLZLT1v",
+          "name": "API SHEETS SLACK"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1mdwocpCxQGH_OqpxFPQOCPCZgeg7aVAUZk9piZdZ9cM/edit#gid=408449730",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 408449730,
+          "mode": "list",
+          "cachedResultName": "Canais",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1mdwocpCxQGH_OqpxFPQOCPCZgeg7aVAUZk9piZdZ9cM/edit#gid=408449730"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $('buscando channel por id').item.json.id }}",
+            "Nome": "={{ $('buscando channel por id').item.json.name }}",
+            "Privado": "={{ $('buscando channel por id').item.json.is_private }}",
+            "Arquivado": "={{ $('buscando channel por id').item.json.is_archived }}",
+            "Criador": "={{ $('usuario slack').item.json.Email }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Privado",
+              "displayName": "Privado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Arquivado",
+              "displayName": "Arquivado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Criador",
+              "displayName": "Criador",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d5d8b26f-6fba-40d7-a584-4fb4580c20a5",
+      "name": "informações grupo slack",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        980,
+        160
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QTcF9qaFX03vTQ2g",
+          "name": "Google Sheets account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "channel",
+        "operation": "get",
+        "channelId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "b691447d-a0d4-445d-8bcd-f47741dc4fea",
+      "name": "buscando channel por id",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.1,
+      "position": [
+        260,
+        60
+      ],
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "YiPkiNuG9Kqb5G8t",
+          "name": "api ti.bh"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "limit"
+      },
+      "id": "bb70c8d6-7c0d-4f76-8fc1-c6fa95b06b34",
+      "name": "listando 1 itens por vez",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        100,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "channel",
+        "operation": "getAll",
+        "returnAll": true,
+        "filters": {
+          "types": [
+            "public_channel",
+            "private_channel"
+          ]
+        }
+      },
+      "id": "11a96b9d-4a44-4dbf-84ab-b46643720a35",
+      "name": "todos channel slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.1,
+      "position": [
+        -260,
+        160
+      ],
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "YiPkiNuG9Kqb5G8t",
+          "name": "api ti.bh"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.ID }}",
+              "operation": "contains",
+              "value2": "={{ $('listando 1 itens por vez').item.json.creator }}"
+            }
+          ]
+        }
+      },
+      "id": "24dc804a-4de4-4d2e-b375-0678b8b9439d",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        600,
+        100
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6b0aa98b-7809-4d2a-ab9f-d3aa1df56809",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        780,
+        480
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "channel",
+        "operation": "member",
+        "channelId": {
+          "__rl": true,
+          "value": "C04THNT9N79",
+          "mode": "list",
+          "cachedResultName": "comunicação"
+        },
+        "returnAll": true,
+        "resolveData": true
+      },
+      "id": "c0f28e24-80cf-49f3-a55e-4c21d4cae208",
+      "name": "Slack2",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.1,
+      "position": [
+        -240,
+        500
+      ],
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "YiPkiNuG9Kqb5G8t",
+          "name": "api ti.bh"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "Nome",
+              "value": "={{ $json.profile.real_name }}"
+            },
+            {
+              "name": "Email",
+              "value": "={{ $json.profile.email }}"
+            },
+            {
+              "name": "ID",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a070ff54-9e58-4b1b-aa60-a9c598f2d1e1",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        120,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1mdwocpCxQGH_OqpxFPQOCPCZgeg7aVAUZk9piZdZ9cM/edit#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1mdwocpCxQGH_OqpxFPQOCPCZgeg7aVAUZk9piZdZ9cM/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {
+            "ID": "={{ $json.ID }}",
+            "NOME": "={{ $json.Nome }}",
+            "EMAIL": "={{ $json.Email }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "NOME",
+              "displayName": "NOME",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "EMAIL",
+              "displayName": "EMAIL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6a57652a-47aa-49f9-ba0a-c38f6e141ff9",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        480,
+        460
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLLX7jfygiLZLT1v",
+          "name": "API SHEETS SLACK"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "334fa0e6-76db-48d5-b629-d58b39df9afe",
+      "name": "Split In Batches1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 15,
+        "unit": "seconds"
+      },
+      "id": "4e0bd39b-a6bc-42d5-bb98-bbdcec581257",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        300,
+        480
+      ],
+      "webhookId": "8f750915-aacd-4fb5-a503-fadc247ee441"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "daysInterval": 7
+            }
+          ]
+        }
+      },
+      "id": "82a908d0-57c1-4302-8fd1-379be429ab91",
+      "name": "Schedule Trigger1",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -420,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Canais Slack\n",
+        "height": 369.8837209302325,
+        "width": 1592.0930232558135
+      },
+      "id": "f1958471-fabb-41fa-96ca-c6f244dae7f1",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -460,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Usuários Slack\n",
+        "height": 261.6279069767442,
+        "width": 1154.6511627906984
+      },
+      "id": "f4bd48da-d688-4f98-b29e-d09f67042329",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -460,
+        420
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    },
+    "node:Schedule Trigger1": {
+      "recurrencyRules": [
+        136
+      ]
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-11-16T12:06:31.088Z",
+      "updatedAt": "2023-11-16T12:06:31.088Z",
+      "id": "REL0OFqAMLJgOvHz",
+      "name": "Interno"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-05-15T04:00:00.000Z",
+  "versionId": "2dc42dad-5974-4a26-9966-43117075095e"
+}
