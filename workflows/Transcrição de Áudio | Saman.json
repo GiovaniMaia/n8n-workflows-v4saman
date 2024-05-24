@@ -1,0 +1,1305 @@
+{
+  "active": true,
+  "connections": {
+    "filtrando audios": {
+      "main": [
+        [
+          {
+            "node": "filtrando grupos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WebHook_Recebendo": {
+      "main": [
+        [
+          {
+            "node": "filtrando audios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Move Binary Data - transformando base64 em audio.ogg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Move Binary Data - transformando base64 em audio.ogg": {
+      "main": [
+        [
+          {
+            "node": "whisper - transcrevendo audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "whisper - transcrevendo audio": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Item Lists2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Date & Time1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "urgente",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ideias",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "tarefas",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Op3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "nome": {
+      "main": [
+        [
+          {
+            "node": "users",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "filtrando grupos": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "nome",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Item Lists3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists3": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "users": {
+      "main": [
+        [
+          {
+            "node": "verifica usuário",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "verifica usuário": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "urgente": {
+      "main": [
+        [
+          {
+            "node": "No Op2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ideias": {
+      "main": [
+        [
+          {
+            "node": "No Op1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tarefas": {
+      "main": [
+        [
+          {
+            "node": "No Op",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-10-27T18:56:54.072Z",
+  "id": "dFH5orEwbxnNg0S6",
+  "meta": null,
+  "name": "Transcrição de Áudio | Saman",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.body.event}}",
+              "value2": "messages.upsert"
+            },
+            {
+              "value1": "={{$json.body.data.messageType}}",
+              "value2": "audioMessage"
+            }
+          ]
+        }
+      },
+      "id": "22a01d6d-f3fc-4c6f-8851-6cb4553a15e9",
+      "name": "filtrando audios",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://162.243.185.198:9091/chat/getBase64FromMediaMessage/grupotestehook",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "apikey",
+              "value": "B6v4chatDD4FD5936544120E713976v4chat"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\"message\":{\"key\": {\"id\": \"{{ $json.body.data.key.id }}\"}},\"convertToMp4\": false }",
+        "options": {}
+      },
+      "id": "1e9a32b2-5069-47c6-ad01-414cda50d81c",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        80,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "b9a53c26-2dfb-4921-ad90-f784c7cf8407-audio-v4",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "User-Agent",
+                "value": "'Mozilla/5.0 (Macintosh; U; Intel ',                                                                                                                                                                    'Mac OS X 10_6_6; en-us) AppleWebKit/533.19.4 ',                                                                                                                                                             '(KHTML, like Gecko) Version/5.0.3 Safari/533.19.4'"
+              }
+            ]
+          }
+        }
+      },
+      "id": "ff2e3d2e-37d3-4a87-86bf-8c5251f7a5e1",
+      "name": "WebHook_Recebendo",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -440,
+        -60
+      ],
+      "webhookId": "b9a53c26-2dfb-4921-ad90-f784c7cf8407"
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "base64",
+        "options": {
+          "dataIsBase64": true,
+          "encoding": "utf8",
+          "fileName": "audio.ogg",
+          "mimeType": "application/json"
+        }
+      },
+      "id": "5a344358-b939-44c4-b0e7-42b33826030d",
+      "name": "Move Binary Data - transformando base64 em audio.ogg",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1,
+      "position": [
+        220,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/audio/transcriptions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "whisper-1"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d94785d6-ccab-4f11-b7b8-c2ec15a74512",
+      "name": "whisper - transcrevendo audio",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        360,
+        -60
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "BmLS6vqwob4dFwTH",
+          "name": "OpenAi v4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "prompt": {
+          "messages": [
+            {
+              "role": "=user",
+              "content": "=Mencione separadamente o tipo do áudio citado na primeira palavra do audio sendo obrigatorio ser (tarefa, ideias, urgente), após isso, preciso definir o título conforme o áudio. Organize o texto e traga sugestões, referências e sacadas gerais sobre o conteúdo do áudio:{{ $('whisper - transcrevendo audio').item.json.text }} Mantenha a ordem das menções abaixo \\n\\n**Tipo de Tarefa:** [INSIRA AQUI O TIPO DE TAREFA]\\n\\n**Título com Base no Áudio:** [INSIRA AQUI O TÍTULO]\\n\\n**Sugestões, Referências e Sacadas Gerais:**\\n1. [INSIRA AQUI A PRIMEIRA SUGESTÃO]\\n2. [INSIRA AQUI A SEGUNDA SUGESTÃO]\\n3. [INSIRA AQUI A TERCEIRA SUGESTÃO]\\n4. [INSIRA AQUI A QUARTA SUGESTÃO]\\n5. [INSIRA AQUI A QUINTA SUGESTÃO]\\n\\n**Organização do Texto:** [ORGANIZE O TEXTO AQUI]."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9101c6ca-a464-4b13-b4e5-d2c32cdbb51d",
+      "name": "OpenAI",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        600,
+        -200
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "BmLS6vqwob4dFwTH",
+          "name": "OpenAi v4"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "44c356fc-e667-4aef-9a5c-f314846ef27f",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        940,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "aggregate": "aggregateAllItemData"
+      },
+      "id": "37c2fe2e-395f-4671-8919-dec2c1df4bce",
+      "name": "Item Lists2",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1140,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1TEKF1OzU8C7TdNDuC-8Gatehy5zq9kGOgojZ4CXapRI/edit#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1TEKF1OzU8C7TdNDuC-8Gatehy5zq9kGOgojZ4CXapRI/edit#gid=0"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "id": "13f0cccf-3c11-4a59-8b96-052fae98a932",
+      "name": "Google Sheets Trigger",
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -440,
+        460
+      ],
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "DmusUjwCAsRD405m",
+          "name": "Google Sheets Trigger account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $('Google Sheets Trigger').item.json[\"Tipo de tarefa\"] }}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "contains",
+              "value2": "Urgente"
+            },
+            {
+              "operation": "contains",
+              "value2": "Ideia",
+              "output": 1
+            },
+            {
+              "operation": "contains",
+              "value2": "Tarefa",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "b8d70a1d-2b05-49ea-9f25-40a73d99aebb",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $now }}",
+        "format": "custom",
+        "customFormat": "dd/MM/yyyy",
+        "options": {}
+      },
+      "id": "1c4a2381-3e15-49f4-8e41-d32ea191de42",
+      "name": "Date & Time1",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        -280,
+        460
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "839355fb-e9ef-463d-9651-05864ecd1425",
+      "name": "No Op",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        300,
+        580
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "62c8cec5-b986-49e3-a8de-2462aaa952ff",
+      "name": "No Op1",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        300,
+        440
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "e48d0930-c3d4-422d-8a5e-a62a27ad03ff",
+      "name": "No Op2",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        300,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extrair o conteúdo da mensagem\nconst content = items[0].json.message.content;\n\n// Regex para extrair o Tipo de Tarefa\nconst tipoTarefaRegex = /\\*\\*Tipo de Tarefa:\\*\\* (.+?)\\n/;\nconst tipoTarefaMatch = content.match(tipoTarefaRegex);\nconst tipoTarefa = tipoTarefaMatch ? tipoTarefaMatch[1] : null;\n\n// Regex para extrair o Título com Base no Áudio\nconst tituloRegex = /\\*\\*Título com Base no Áudio:\\*\\* (.+?)\\n/;\nconst tituloMatch = content.match(tituloRegex);\nconst tituloAudio = tituloMatch ? tituloMatch[1] : null;\n\n// Regex para extrair Sugestões 1, 2, 3, 4, 5\nconst sugestoesRegex = /\\*\\*Sugestões, Referências e Sacadas Gerais:\\*\\*\\n([\\s\\S]+?)\\n\\n/;\nconst sugestoesMatch = content.match(sugestoesRegex);\nconst sugestoes = sugestoesMatch ? sugestoesMatch[1].trim().split('\\n') : [];\n\n// Extrair a Organização do Texto até \"Sugestões, Referências e Sacadas Gerais:\"\nconst organizacaoRegex = /\\*\\*Organização do Texto:\\*\\*([\\s\\S]+)/;\nconst organizacaoMatch = content.match(organizacaoRegex);\nconst organizacaoTexto = organizacaoMatch ? organizacaoMatch[1].trim() : null;\n\nreturn {\n  tipoTarefa,\n  tituloAudio,\n  sugestoes,\n  organizacaoTexto\n};\n"
+      },
+      "id": "cbb7fdfc-7b86-401c-a179-38b8e71c35a8",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        740,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1TEKF1OzU8C7TdNDuC-8Gatehy5zq9kGOgojZ4CXapRI/edit#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1TEKF1OzU8C7TdNDuC-8Gatehy5zq9kGOgojZ4CXapRI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Grupo": "={{ $json.data[2].ID }}",
+            "Tipo de tarefa": "={{ $('Item Lists2').item.json.data[0].tipoTarefa }}",
+            "Titulo": "={{ $('Item Lists2').item.json.data[0].tituloAudio }}",
+            "Sugestão": "={{ $('Item Lists2').item.json.data[0].sugestoes }}",
+            "Texto organizado": "={{ $('Item Lists2').item.json.data[0].organizacaoTexto }}",
+            "texto original": "={{ $('Item Lists2').item.json.data[1].text }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Tipo de tarefa",
+              "displayName": "Tipo de tarefa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Titulo",
+              "displayName": "Titulo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sugestão",
+              "displayName": "Sugestão",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Texto organizado",
+              "displayName": "Texto organizado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "texto original",
+              "displayName": "texto original",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Grupo",
+              "displayName": "Grupo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1997d726-7222-4ce2-b323-a11113bd0000",
+      "name": "Google Sheets3",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        1320,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLLX7jfygiLZLT1v",
+          "name": "API SHEETS SLACK"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "bef15218-c2dc-4fb3-ba61-17c7c6a1bdf1",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        620,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "nome",
+              "value": "={{ $json.body.data.pushName }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ebd4ef1c-0654-47c0-9696-3ce6bfb5accd",
+      "name": "nome",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        0,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Users Notion\n",
+        "height": 307.0786516853933,
+        "width": 1670.6741573033705
+      },
+      "id": "ccd50119-03bc-4fb9-90b8-dee61c074464",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        -600
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Transcrevendo áudio  \n",
+        "height": 501.9101123595502,
+        "width": 2071.797752808989
+      },
+      "id": "39869c84-24cc-4b79-9908-c117d5b29f20",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Pegando áudio transcrito e salvando no Notion \n",
+        "height": 591.6853932584272,
+        "width": 1030.7865168539324
+      },
+      "id": "e93662c3-cd5d-494b-b59d-a8da9c8441d3",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.body.data.key.remoteJid}}",
+              "value2": "120363198087338128@g.us"
+            },
+            {
+              "value1": "={{$json.body.data.key.remoteJid}}",
+              "value2": "120363184359335580@g.us"
+            },
+            {
+              "value1": "={{$json.body.data.key.remoteJid}}",
+              "value2": "120363202996136997@g.us"
+            },
+            {
+              "value1": "={{$json.body.data.key.remoteJid}}",
+              "value2": "120363205558694322@g.us"
+            },
+            {
+              "value1": "={{$json.body.data.key.remoteJid}}",
+              "value2": "120363203942152597@g.us"
+            },
+            {
+              "value1": "={{$json.body.data.key.remoteJid}}",
+              "value2": "120363191378161155@g.us"
+            }
+          ]
+        },
+        "combineConditions": "OR"
+      },
+      "id": "b829ff7c-dc9f-4cf6-a913-d0b42e3c4184",
+      "name": "filtrando grupos",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        -60
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "44de1584-935c-4b32-a438-8ebbd540e65d",
+      "name": "No Op3",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        80,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "1421f1b3-a239-4867-bf14-6455e06d066d",
+          "mode": "list",
+          "cachedResultName": "Base de Áudios",
+          "cachedResultUrl": "https://www.notion.so/1421f1b3a2394867bf146455e06d066d"
+        },
+        "simple": false,
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Titulo|title",
+              "title": "={{ $('Google Sheets Trigger').item.json.Titulo }}"
+            },
+            {
+              "key": "Tipo|multi_select",
+              "multiSelectValue": [
+                "Urgente"
+              ]
+            },
+            {
+              "key": "Data|rich_text",
+              "textContent": "={{ $('Date & Time1').item.json.formattedDate }}"
+            },
+            {
+              "key": "Responsável|people",
+              "peopleValue": "={{ $('Google Sheets Trigger').item.json.Grupo }}"
+            }
+          ]
+        },
+        "blockUi": {
+          "blockValues": [
+            {
+              "textContent": "=Áudio Organizado:\n\n {{ $('Google Sheets Trigger').item.json[\"Texto organizado\"] }}"
+            },
+            {
+              "textContent": "=Sugestões:\n\n  {{ $('Google Sheets Trigger').item.json[\"Sugestão\"] }}"
+            },
+            {
+              "textContent": "=Texto original:\n\n {{ $('Google Sheets Trigger').item.json[\"texto original\"] }}\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1c176095-cc53-45d9-b261-202f9e32fd40",
+      "name": "urgente",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        80,
+        300
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "cXfLaKacDsxHl2Dh",
+          "name": "Notion v4"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "1421f1b3-a239-4867-bf14-6455e06d066d",
+          "mode": "list",
+          "cachedResultName": "Base de Áudios",
+          "cachedResultUrl": "https://www.notion.so/1421f1b3a2394867bf146455e06d066d"
+        },
+        "simple": false,
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Titulo|title",
+              "title": "={{ $('Google Sheets Trigger').item.json.Titulo }}"
+            },
+            {
+              "key": "Tipo|multi_select",
+              "multiSelectValue": [
+                "Ideias"
+              ]
+            },
+            {
+              "key": "Data|rich_text",
+              "textContent": "={{ $('Date & Time1').item.json.formattedDate }}"
+            },
+            {
+              "key": "Responsável|people",
+              "peopleValue": "={{ $('Google Sheets Trigger').item.json.Grupo }}"
+            }
+          ]
+        },
+        "blockUi": {
+          "blockValues": [
+            {
+              "textContent": "=Áudio Organizado:\n\n {{ $('Google Sheets Trigger').item.json[\"Texto organizado\"] }}"
+            },
+            {
+              "textContent": "=Sugestões:\n\n  {{ $('Google Sheets Trigger').item.json[\"Sugestão\"] }}"
+            },
+            {
+              "textContent": "=Texto original:\n\n {{ $('Google Sheets Trigger').item.json[\"texto original\"] }}\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "774525b6-2002-481f-ba5c-057b27c5fa54",
+      "name": "ideias",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        80,
+        440
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "cXfLaKacDsxHl2Dh",
+          "name": "Notion v4"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "1421f1b3-a239-4867-bf14-6455e06d066d",
+          "mode": "list",
+          "cachedResultName": "Base de Áudios",
+          "cachedResultUrl": "https://www.notion.so/1421f1b3a2394867bf146455e06d066d"
+        },
+        "simple": false,
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Titulo|title",
+              "title": "={{ $('Google Sheets Trigger').item.json.Titulo }}"
+            },
+            {
+              "key": "Tipo|multi_select",
+              "multiSelectValue": [
+                "Tarefas"
+              ]
+            },
+            {
+              "key": "Data|rich_text",
+              "textContent": "={{ $('Date & Time1').item.json.formattedDate }}"
+            },
+            {
+              "key": "Responsável|people",
+              "peopleValue": "={{ $('Google Sheets Trigger').item.json.Grupo }}"
+            }
+          ]
+        },
+        "blockUi": {
+          "blockValues": [
+            {
+              "textContent": "=Áudio Organizado:\n\n {{ $('Google Sheets Trigger').item.json[\"Texto organizado\"] }}"
+            },
+            {
+              "textContent": "=Sugestões:\n\n  {{ $('Google Sheets Trigger').item.json[\"Sugestão\"] }}"
+            },
+            {
+              "textContent": "=Texto original:\n\n {{ $('Google Sheets Trigger').item.json[\"texto original\"] }}\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3ac6b9dd-3e9c-4a60-9d0a-e208e3bd4804",
+      "name": "tarefas",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        80,
+        580
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "cXfLaKacDsxHl2Dh",
+          "name": "Notion v4"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "resource": "user",
+        "operation": "getAll",
+        "returnAll": true
+      },
+      "id": "9feb6f64-b3a3-4c3e-9c05-0b14a0c4a396",
+      "name": "Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        -300,
+        -520
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "u3jJakUn9UPtKvRQ",
+          "name": "Notion api users"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "3b84ec31-0c46-4559-ab31-a7de001f8863",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        -140,
+        -520
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "limit"
+      },
+      "id": "8dabeea5-9f4d-4d78-89d5-a2a9cc2c0734",
+      "name": "Item Lists3",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        20,
+        -580
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "amount": 15,
+        "unit": "seconds"
+      },
+      "id": "d5e42508-68cd-4192-8d88-5e3907d7f950",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        200,
+        -560
+      ],
+      "webhookId": "8b3aaced-d616-4a4e-bbc4-8820d7f13c31",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1TEKF1OzU8C7TdNDuC-8Gatehy5zq9kGOgojZ4CXapRI/edit#gid=16971927",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 16971927,
+          "mode": "list",
+          "cachedResultName": "Users",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1TEKF1OzU8C7TdNDuC-8Gatehy5zq9kGOgojZ4CXapRI/edit#gid=16971927"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $json.id }}",
+            "Nome": "={{ $json.name }}",
+            "E-mail": "={{ $json.person.email }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "E-mail",
+              "displayName": "E-mail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d1577f41-6d5c-4991-8de4-03b2e386febf",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        340,
+        -560
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QTcF9qaFX03vTQ2g",
+          "name": "Google Sheets account 4"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "id": "99d36c2c-d169-4e41-8adb-2a9ae4c774b3",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -440,
+        -520
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1TEKF1OzU8C7TdNDuC-8Gatehy5zq9kGOgojZ4CXapRI/edit#gid=16971927",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 16971927,
+          "mode": "list",
+          "cachedResultName": "Users",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1TEKF1OzU8C7TdNDuC-8Gatehy5zq9kGOgojZ4CXapRI/edit#gid=16971927"
+        },
+        "options": {}
+      },
+      "id": "7a13fe40-91a0-4c9d-ac66-03468bdec715",
+      "name": "users",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        140,
+        140
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QTcF9qaFX03vTQ2g",
+          "name": "Google Sheets account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('nome').item.json.nome }}",
+              "operation": "contains",
+              "value2": "={{ $json.Nome }}"
+            }
+          ]
+        }
+      },
+      "id": "01b87d18-3647-46fc-998e-c474d1f4b2bc",
+      "name": "verifica usuário",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        280,
+        140
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Google Sheets Trigger": {
+      "documentId": "1TEKF1OzU8C7TdNDuC-8Gatehy5zq9kGOgojZ4CXapRI",
+      "sheetId": 0,
+      "lastIndexChecked": 57
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2023-11-16T12:06:31.088Z",
+      "updatedAt": "2023-11-16T12:06:31.088Z",
+      "id": "REL0OFqAMLJgOvHz",
+      "name": "Interno"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-05-24T19:04:55.000Z",
+  "versionId": "5bad5dca-42b1-4839-ba18-7b212c9ef8bb"
+}
